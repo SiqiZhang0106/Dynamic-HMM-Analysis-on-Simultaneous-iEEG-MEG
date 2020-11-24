@@ -31,10 +31,10 @@ for ind = 1:N
     ndim = size(TL,2);
     for e = 1:ndim  % electrodes number
         x = TL(:,e);
-        [sp,f,t] = pspectrum(x,Fs,'spectrogram','FrequencyLimits',[1,125],'TimeResolution',1);
-        %         images(t,f,P)
-        %         pspectrum(x,Fs,'spectrogram','FrequencyLimits',[1,40],'FrequencyResolution',25);
-        t = single(t.*250);
+        t = (1/Fs:1/Fs:tlen)';
+        xTable = timetable(seconds(t), x);
+        [sp,f,t] = pspectrum(xTable,'spectrogram','FrequencyLimits',[1,30],'TimeResolution',1);
+        t = single(seconds(t).*250);        
         cor = zeros(size(sp,1),K);
         for k = 1:K
             g = gamma(t(:,1),k);
