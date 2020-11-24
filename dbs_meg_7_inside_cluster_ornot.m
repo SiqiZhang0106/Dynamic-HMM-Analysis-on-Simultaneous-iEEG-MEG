@@ -68,8 +68,7 @@ for s=1:length(subjects)
 end
 
 [F,K] = size(Dis_Chans_Clus_K);
-%if the location of electrode f was most close to the cluster k, the value of
-%M could be 1, otherwise, could be 0.
+
 for f = 1:F
     
     M = zeros(K,size(Dis_Chans_Clus_K{f,1},1));
